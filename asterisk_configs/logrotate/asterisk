@@ -1,0 +1,18 @@
+/var/spool/mail/asterisk
+/var/log/asterisk/dtmf
+/var/log/asterisk/event_log
+/var/log/asterisk/fail2ban
+/var/log/asterisk/full
+/var/log/asterisk/messages
+/var/log/asterisk/queue_log {
+    daily
+    missingok
+    rotate 14
+    compress
+    notifempty
+    sharedscripts
+    postrotate
+        /usr/sbin/asterisk -rx 'logger reload' > /dev/null 2> /dev/null
+    endscript
+    nocreate
+}
